@@ -12,12 +12,25 @@ public class BookController {
 
     private List<Book> books = new ArrayList<>();
 
-    private Long id = 1L;
+    private Long nextId = 1L;
 
     public BookController() {
-        books.add(new Book(id++, "jAVA", "Author 1", 20.0));
-        books.add(new Book(id++, "Spring", "Author 2", 25.0));
-        books.add(new Book(id++, "Spring Boot", "Author 3", 22.0));
+        // Add 15 books with varied data for testing
+        books.add(new Book(nextId++, "Spring Boot in Action", "Craig Walls", 39.99));
+        books.add(new Book(nextId++, "Effective Java", "Joshua Bloch", 45.00));
+        books.add(new Book(nextId++, "Clean Code", "Robert Martin", 42.50));
+        books.add(new Book(nextId++, "Java Concurrency in Practice", "Brian Goetz", 49.99));
+        books.add(new Book(nextId++, "Design Patterns", "Gang of Four", 54.99));
+        books.add(new Book(nextId++, "Head First Java", "Kathy Sierra", 35.00));
+        books.add(new Book(nextId++, "Spring in Action", "Craig Walls", 44.99));
+        books.add(new Book(nextId++, "Clean Architecture", "Robert Martin", 39.99));
+        books.add(new Book(nextId++, "Refactoring", "Martin Fowler", 47.50));
+        books.add(new Book(nextId++, "The Pragmatic Programmer", "Andrew Hunt", 41.99));
+        books.add(new Book(nextId++, "You Don't Know JS", "Kyle Simpson", 29.99));
+        books.add(new Book(nextId++, "JavaScript: The Good Parts", "Douglas Crockford", 32.50));
+        books.add(new Book(nextId++, "Eloquent JavaScript", "Marijn Haverbeke", 27.99));
+        books.add(new Book(nextId++, "Python Crash Course", "Eric Matthes", 38.00));
+        books.add(new Book(nextId++, "Automate the Boring Stuff", "Al Sweigart", 33.50));
     }
 
     // get all books - /api/books
@@ -39,5 +52,7 @@ public class BookController {
         books.add(book);
         return books;
     }
+
+
 
 }
