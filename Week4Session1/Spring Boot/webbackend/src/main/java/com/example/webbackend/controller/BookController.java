@@ -4,6 +4,7 @@ import com.example.webbackend.entity.Book;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,7 +86,34 @@ public class BookController {
     }
 
     // sort
+    @GetMapping("/books/sorted")
+    public List<Book> getSortedBooks(
+            @RequestParam(required = false, defaultValue = "title") String sortBy,
+            @RequestParam(required = false, defaultValue = "asc") String order
+    ){
+        Comparator<Book> comparator;
 
+        switch(sortBy.toLowerCase()) {
+            case "author":
+                comparator = Comparator.comparing(Book::getAuthor);
+                break;
+                case "title":
+                comparator = Comparator.comparing(Book::getTitle);
+            default:
+                comparator = Comparator.comparing(Book::getTitle);
+                break;
+        }
+
+        if("desc".equalsIgnoreCase(order)) {
+            comparator = comparator.reversed();
+        }
+
+        return books.stream().sorted(comparator)
+                .collect(Collectors.toList());
+
+
+
+    }
 
 
 }
